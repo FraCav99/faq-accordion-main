@@ -1,0 +1,147 @@
+/* Font faces */
+@font-face {
+  font-family: "Work Sans";
+  font-style: normal;
+  font-weight: 400;
+  src: local("WorkSans"), local("WorkSans"),
+    url("assets/fonts/static/WorkSans-Regular.ttf") format("opentype");
+}
+
+@font-face {
+  font-family: "Work Sans";
+  font-style: normal;
+  font-weight: 600;
+  src: local("WorkSans SemiBold"), local("WorkSans-SemiBold"),
+    url("assets/fonts/static/WorkSans-SemiBold.ttf") format("opentype");
+}
+
+@font-face {
+  font-family: "Work Sans";
+  font-style: normal;
+  font-weight: 700;
+  src: local("WorkSans Bold"), local("WorkSans-Bold"),
+    url("assets/fonts/static/WorkSans-Bold.ttf") format("opentype");
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /* Colors */
+  --white: hsl(0, 0%, 100%);
+  --light-pink: hsl(275, 100%, 97%);
+  --grayish-purple: hsl(292, 16%, 49%);
+  --dark-purple: hsl(292, 42%, 14%);
+  --hover-pinkie: hsl(281, 83%, 54%);
+}
+
+body {
+  min-height: 100vh;
+  min-height: 100dvh; /* only for supported browsers */
+  font-family: "Work Sans", sans-serif;
+  line-height: 1.5;
+  background-image: url("assets/images/background-pattern-desktop.svg");
+  background-color: var(--light-pink);
+  background-repeat: no-repeat;
+  background-size: 100%;
+
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr auto;
+  place-items: center;
+}
+
+@media screen and (max-width: 570px) {
+  body {
+    background-image: url("assets/images/background-pattern-mobile.svg");
+  }
+}
+
+.card {
+  background-color: var(--white);
+  width: min(600px, calc(100% - 2rem));
+  box-shadow: 10px 25px 20px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  padding: 2em;
+}
+
+.card :is(h1, summary) {
+  color: var(--dark-purple);
+}
+
+.card h1 {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 2rem;
+}
+
+.card h1::before {
+  content: "";
+  display: inline-block;
+  width: 2rem;
+  height: 2rem;
+  background-image: url("assets/images/icon-star.svg");
+  background-size: cover;
+}
+
+@media screen and (min-width: 600px) {
+  .card h1 {
+    font-size: 4rem;
+  }
+
+  .card h1::before {
+    width: 3rem;
+    height: 3rem;
+  }
+}
+
+details {
+  color: var(--grayish-purple);
+}
+
+details + details {
+  border-top: 1px solid var(--light-pink);
+}
+
+details > summary {
+  color: var(--dark-purple);
+  font-weight: 600;
+  padding-block: 1.5em;
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+details > summary:is(:hover, :focus-visible) {
+  color: var(--hover-pinkie);
+  outline: none;
+}
+
+details > summary::after {
+  content: url("assets/images/icon-plus.svg");
+}
+
+details[open] > summary::after {
+  content: url("assets/images/icon-minus.svg");
+}
+
+details > .content {
+  padding-bottom: 1.5em;
+}
+
+.attribution {
+  font-size: 0.6875rem;
+  text-align: center;
+  padding-block: 1.5rem;
+}
+.attribution a {
+  color: hsl(228, 45%, 44%);
+}
